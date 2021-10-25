@@ -8,6 +8,35 @@
     <title>Pods Personal Library App</title>
 </head>
 <body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo-container">
+                <div class="logo">
+                    <span>Pods</span>
+                    <span>&trade;</span>
+                </div>
+            </div>
+            <h1>Pods Personal Library App</h1>
+            <div class="custom-search-filter flex">
+                <div class="seearch">
+                    <input type="text" class="search-box" placeholder="search book by title, author, pages...">
+                </div>
+                <div class="filter flex">
+                    <div class="input-category author flex column">
+                        <input type="radio" name ="author" id="author">
+                        <label for="author" class="block">author</label>   
+                    </div>
+                    <div class="input-category title flex column">
+                        <input type="radio" name="title" id="title">
+                        <label for="title" id="title" class="block">titile</label>   
+                    </div>
+                    <div class="input-category read-status flex column">
+                        <input type="radio" name="read-status" id="read-status">
+                        <label for="read-status" class="block">read status</label>
+                    </div>
+                </div>
+            </div>
+        </header>
   
     <script src="js/app.js"></script>
 </body>
