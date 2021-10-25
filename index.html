@@ -37,6 +37,47 @@
                 </div>
             </div>
         </header>
+        <main class="app-main">
+            <section class="book-input-container">
+                <div class="book-input-modal flex">
+                    <form action="" id = "form">
+                        <input type="text" name="book-title" id="book-title" placeholder="enter book title" class="block">
+                        <input type="text" name="book-author" id="book-author" placeholder="enter author's name" class="block">
+                        <input type="text" name="book-pages" id="book-pages" placeholder="enter number of pages">
+                        <div class="flex column">
+                            <span>Have you read the book?</span>
+                            <div class="read-options flex">
+                                <div class="input-category read-status-no flex">
+                                    <label for="read-status-no">No</label>
+                                    <input type="radio" name="read-status-no" id="read-status-no">   
+                                </div>
+                                <div class="input-category read-status-yes flex">
+                                    <label for="read-status-yes">Yes</label>
+                                    <input type="radio" name="read-status-no" id="read-status-yes">   
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <input type="submit"  value="Add Book" id="submit-btn"class="block flex">
+                    </form>
+                </div>
+            </section>
+            <section class="book-display-container flex column">
+                <table class="books">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>pages</th>
+                            <th>Read Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body"></tbody>
+                </table>
+            </section>
+        </main>
+    </div>
   
     <script src="js/app.js"></script>
 </body>
