@@ -1,0 +1,20 @@
+.block{
+    display: block;
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.column{
+    flex-direction: column;
+    justify-content: center;
+}
+
+.book-display-container{
+    row-gap: 10px;
+    width: 960px;
+    border: 2px solid red;
+}
