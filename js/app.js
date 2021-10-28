@@ -34,7 +34,7 @@ function displayBooks() {
     tableBody.removeChild(tableBody.firstChild);
   }
 
-  bookList.forEach((book, index) => {
+  myLibrary.forEach((book, index) => {
     const readStatus = book.read === "true" ? "read" : "Not read";
     const tableRow = document.createElement("tr");
     tableRow.innerHTML = `
@@ -47,4 +47,44 @@ function displayBooks() {
 
     tableBody.append(tableRow);
   });
+}
+
+function grabFormFielVAlues() {
+  const form = document.querySelector("#form");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    //grab HTML form fields
+    const titleFied = form.elements["book-title"];
+    const authorField = form.elements["book-author"];
+    const pagesField = form.elements["book-pages"];
+    const readStatusRadios = form.elements["read-status"];
+    //grab the value of HTML form fields
+    const bookTitle = titleFied.value;
+    const bookAuthor = authorField.value;
+    const bookPages = pagesField.value;
+    //get the value of selected radio button
+    function getReadStatus() {
+      let selectedValue;
+      readStatusRadios.forEach((radio) => {
+        if (radio.checked) {
+          selectedValue = radio.value;
+        }
+      });
+      return selectedValue;
+    }
+    const readStatus = getReadStatus();
+    //instantiate Book constructor
+    addBookToList(bookTitle, bookAuthor, bookPages, readStatus);
+    displayBooks();
+    //clear input fields after adding each book
+    resetInputFields(titleFied, authorField, pagesField);
+  });
+}
+
+grabFormFielVAlues();
+
+function resetInputFields(titleFied, authorField, pagesField) {
+  titleFied.value = "";
+  authorField.value = "";
+  pagesField.value = "";
 }
