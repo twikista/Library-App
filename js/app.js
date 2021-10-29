@@ -16,6 +16,7 @@ Book.prototype.bookReadStatus = function (target) {
   } else if (this.read === "false") {
     this.read = "true";
   }
+
   const readStatus = this.read === "true" ? "read" : "Not read";
   target.textContent = `${readStatus}`;
 };
@@ -81,10 +82,23 @@ function grabFormFielVAlues() {
   });
 }
 
-grabFormFielVAlues();
-
 function resetInputFields(titleFied, authorField, pagesField) {
   titleFied.value = "";
   authorField.value = "";
   pagesField.value = "";
 }
+
+grabFormFielVAlues();
+
+function toggleBookReadStatus(target, instanceofBook) {
+  if (target.tagName === "BUTTON" && target.classList.contains("read-btn")) {
+    console.log(target);
+    instanceofBook.bookReadStatus(target);
+  }
+}
+
+const tableBody = document.querySelector(".table-body");
+tableBody.addEventListener("click", (e) => {
+  const target = e.target;
+  toggleBookReadStatus(target, myLibrary[target.dataset.readstatusindex]);
+});
