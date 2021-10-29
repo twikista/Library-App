@@ -41,6 +41,8 @@ Book.prototype.bookReadStatus = function (target) {
 function addBookToList(title, author, pages, readStatus) {
   const book = new Book(title, author, pages, readStatus);
   myLibrary.push(book);
+  moveBookToStorage();
+  displayBooks();
 }
 
 //loop throgh myLibrary array and display each book
