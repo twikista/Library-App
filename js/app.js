@@ -1,3 +1,15 @@
+//get all books from local storage
+function getBookFromstorage() {
+  return JSON.parse(localStorage.getItem("books")) || [];
+}
+//store books in myLibrary
+const myLibrary = getBookFromstorage();
+
+//update books in local storage with books in myLibrary
+function moveBookToStorage() {
+  localStorage.setItem("books", JSON.stringify(myLibrary));
+}
+
 //define array that store books
 const myLibrary = [];
 
