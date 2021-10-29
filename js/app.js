@@ -5,13 +5,17 @@ function getBookFromstorage() {
 //store books in myLibrary
 const myLibrary = getBookFromstorage();
 
+//add methods to object retrieved from localStorage
+myLibrary.forEach((book) => {
+  book.bookReadStatus = Book.prototype.readStatus;
+});
+
 //update books in local storage with books in myLibrary
 function moveBookToStorage() {
   localStorage.setItem("books", JSON.stringify(myLibrary));
 }
 
 //define array that store books
-const myLibrary = [];
 
 //Book constructor
 function Book(title, author, pages, read) {
