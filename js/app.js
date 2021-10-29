@@ -92,7 +92,6 @@ grabFormFielVAlues();
 
 function toggleBookReadStatus(target, instanceofBook) {
   if (target.tagName === "BUTTON" && target.classList.contains("read-btn")) {
-    console.log(target);
     instanceofBook.bookReadStatus(target);
   }
 }
@@ -101,4 +100,16 @@ const tableBody = document.querySelector(".table-body");
 tableBody.addEventListener("click", (e) => {
   const target = e.target;
   toggleBookReadStatus(target, myLibrary[target.dataset.readstatusindex]);
+  deleteBook(target);
 });
+
+function deleteBook(target) {
+  if (target.classList.contains("delete-btn")) {
+    //remove book from library
+    myLibrary.splice(target.dataset.index, 1);
+    //remove book from UI
+    target.parentElement.parentElement.remove();
+    //display current books in library
+    displayBooks();
+  }
+}
