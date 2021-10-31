@@ -10,57 +10,67 @@
 <body>
     <div class="app-container">
         <header class="app-header">
-            <div class="logo-container">
+            <div class="logo-container flex">
                 <div class="logo">
                     <span>Pods</span>
                     <span>&trade;</span>
                 </div>
+                <h1>Pods Personal Library App</h1>
             </div>
-            <h1>Pods Personal Library App</h1>
-            <div class="custom-search-filter flex">
-                <div class="seearch">
-                    <input type="text" class="search-box" placeholder="search book by title, author, pages...">
+            
+            <div class="custom-search-filter flex column">
+                <div class="search">
+                    <input type="text" class="search-box" placeholder="search book by title or author">
                 </div>
-                <div class="filter flex">
-                    <div class="input-category author flex column">
-                        <input type="radio" name ="author" id="author">
+                <div class="sort-section flex">
+                    <h3>Sort books by:</h3>
+                    <div class="sort-criteria author flex">
+                        <input type="radio" name ="sort" id="author" value="author">
                         <label for="author" class="block">author</label>   
                     </div>
-                    <div class="input-category title flex column">
-                        <input type="radio" name="title" id="title">
+                    <div class="sort-criteria title flex">
+                        <input type="radio" name="sort" id="title" value="title">
                         <label for="title" id="title" class="block">titile</label>   
                     </div>
-                    <div class="input-category read-status flex column">
-                        <input type="radio" name="read-status" id="read-status">
+                    <div class="sort-criteria read-status flex">
+                        <input type="radio" name="sort" id="read-status" value="read">
                         <label for="read-status" class="block">read status</label>
                     </div>
                 </div>
             </div>
         </header>
         <main class="app-main">
-            <section class="book-input-container">
-                <div class="book-input-modal flex">
-                    <form action="" id="form">
-                        <input type="text" name="book-title" id="book-title" placeholder="enter book title" class="block">
-                        <input type="text" name="book-author" id="book-author" placeholder="enter author's name" class="block">
-                        <input type="text" name="book-pages" id="book-pages" placeholder="enter number of pages">
-                        <div class="flex column">
-                            <span>Have you read the book?</span>
-                            <div class="read-options flex">
-                                <div class="input-category read-status-no flex">
-                                    <label for="read-status-no">No</label>
-                                    <input type="radio" name="read-status" id="read-status-no" value="false" checked>   
+            <section class="input-book-details-section">
+                <div class="input-book-details-container flex column">
+                    <div class="add-btn-conatainer">
+                        <button class="add-book-btn">Add book to Library</button>
+                    </div>
+                    <div class="input-book-detail-modal flex">
+                        <form action="" id="form" class="flex column">
+                            <span class="material-icons close-icon">clear</span>
+                            <input type="text" name="book-title" id="book-title" placeholder="Enter book title" class="block">
+                            <input type="text" name="book-author" id="book-author" placeholder="Enter author's name" class="block">
+                            <input type="text" name="book-pages" id="book-pages" placeholder="Enter number of pages">
+                            <div class="read-options-container flex column">
+                                <span class="read-option-question">Have you read the book?</span>
+                                <div class="read-options flex">
+                                    <div class="input-category read-status-no flex">
+                                        <label for="read-status-no">No</label>
+                                        <input type="radio" name="read-status" id="read-status-no" value="false" checked>   
+                                    </div>
+                                    <div class="input-category read-status-yes flex">
+                                        <label for="read-status-yes">Yes</label>
+                                        <input type="radio" name="read-status" id="read-status-yes" value="true">   
+                                    </div>
                                 </div>
-                                <div class="input-category read-status-yes flex">
-                                    <label for="read-status-yes">Yes</label>
-                                    <input type="radio" name="read-status" id="read-status-yes" value="true">   
-                                </div>
+                                
                             </div>
-                            
-                        </div>
-                        <button type="submit"  value="Add Book" id="submit-btn"class="block flex">Add Book</button>
-                    </form>
+                            <button type="submit"  value="Add Book" id="submit-btn"class="block flex">Add Book</button>
+                        </form>
+                    </div>
                 </div>
+            
+                
             </section>
             <section class="book-display-container flex column">
                 <table class="books">
@@ -79,6 +89,7 @@
             </section>
         </main>
     </div>
+
 
   
     <script src="js/app.js"></script>

@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 .block{
     display: block;
 }
@@ -17,4 +21,172 @@
     row-gap: 10px;
     width: 960px;
     border: 2px solid red;
+}
+
+.table-row{
+    background-color: #ffff99;
+    width: 100%;
+    
+}
+
+.heading-row, .content-row{
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    /* border: solid 2px red; */
+    background-color: #8f8f73;
+}
+
+.heading-row{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.heading{
+    justify-self: center;
+    /* justify-content: center; */
+    border: solid 2px red;
+    
+}
+
+.heading-title{
+    /* width: 45%; */
+    flex-grow: 60%;
+    
+}
+
+.content{
+    justify-self: center;
+    width: 25%;
+    /* border: solid 2px red; */
+}
+
+.delete-btn{
+    /* background-color:transparent; */
+    /* border: none; */
+    /* outline: none; */
+}
+
+.input-book-detail-modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    cursor: pointer;
+    transition: ease 0.3s;
+
+}
+
+form{
+    background-color: royalblue;
+    width: 30%;
+    min-width: 250px;
+    height: 70vh;
+    padding: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    position: relative;
+}
+
+.active{
+    display: flex;
+}
+
+.close-icon{
+    color: #fff;
+    font-size: 18px;
+    display: inline-block;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+    font-weight: 900;
+
+}
+
+
+
+tr{
+    border: red solid 3px;
+}
+
+th{
+    border: red solid 3px;  
+}
+
+table{
+    border: red solid 3px;
+}
+
+td{
+    border: red solid 3px;
+}
+
+form input[type =text]{
+    border-radius: 3px;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    margin-bottom: 10px;
+    /* height: 30px; */
+    width: 95%;
+    padding: 8px;
+    /* display: inline-block; */
+    /* box-shadow:0 0 5px rgba(0, 0, 0, 0.5); */
+    color: #8f8f73;
+}
+
+form input[type =text]:focus{
+    border: 2px rgba(0, 0, 0, 0.6) solid;
+}
+
+form input::placeholder{
+    font-size: 12px;
+}
+
+.read-options-container{
+    margin-top: 8px;
+    border: solid #fff 2px;
+    border-radius: 3px;
+}
+
+.read-option-question{
+    padding: 8px 0 5px 0;
+
+}
+
+.read-options{
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    
+
+}
+
+.read-status-yes{
+    margin-left: 10px;
+}
+
+#submit-btn{
+    margin-top: 20px;
+}
+
+@media(max-width:300px){
+    form{
+        width: 80%;
+        min-width: 200px;
+        padding: 7px;
+        
+    }
+
+    form input[type =text]{
+       width: 100%;
+    }
+
+    form input::placeholder{
+        font-size: 10px;
+    }
 }

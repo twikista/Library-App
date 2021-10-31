@@ -76,7 +76,7 @@ function displayBooks() {
   });
 }
 
-function grabFormFielVAlues() {
+function grabFormFieldVAlues() {
   const form = document.querySelector("#form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -113,7 +113,7 @@ function resetInputFields(titleFied, authorField, pagesField) {
   pagesField.value = "";
 }
 
-grabFormFielVAlues();
+grabFormFieldVAlues();
 
 function toggleBookReadStatus(target, instanceofBook) {
   if (target.tagName === "BUTTON" && target.classList.contains("read-btn")) {
@@ -144,3 +144,22 @@ function deleteBook() {
 displayBooks();
 
 deleteBook();
+
+const searchBox = document.querySelector(".search-box");
+searchBox.addEventListener("keyup", (e) => {
+  const searchTerm = e.target.value.toLowerCase();
+  const books = tableBody.querySelectorAll("tr");
+  books.forEach((book) => {
+    const bookTitle = book.firstElementChild.textContent.toLowerCase();
+    const bookAuthor =
+      book.firstElementChild.nextElementSibling.textContent.toLowerCase();
+    if (
+      bookTitle.indexOf(searchTerm) !== -1 ||
+      bookAuthor.indexOf(searchTerm) !== -1
+    ) {
+      book.style.visibility = "visible";
+    } else {
+      book.style.visibility = "collapse";
+    }
+  });
+});
