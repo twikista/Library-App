@@ -144,7 +144,7 @@ function deleteBook() {
 displayBooks();
 
 deleteBook();
-
+//search book in library by book title or author's name
 const searchBox = document.querySelector(".search-box");
 searchBox.addEventListener("keyup", (e) => {
   const searchTerm = e.target.value.toLowerCase();
@@ -163,3 +163,24 @@ searchBox.addEventListener("keyup", (e) => {
     }
   });
 });
+
+//sort displayed books by title, author or read status
+function sortBooks() {
+  const sortCriteria = document.querySelector(".sort-section");
+  let sortTerm;
+  sortCriteria.addEventListener("click", (e) => {
+    const target = e.target;
+    if (target.tagName === ("INPUT" || "LABEL") && target.checked) {
+      sortTerm = target.value;
+    }
+    myLibrary.sort((x, y) => {
+      const a = x[sortTerm];
+      const b = y[sortTerm];
+      return a === b ? 0 : a > b ? 1 : -1;
+    });
+    moveBookToStorage();
+    displayBooks();
+  });
+}
+
+sortBooks();
