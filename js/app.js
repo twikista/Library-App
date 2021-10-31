@@ -1,22 +1,3 @@
-//get all books from local storage
-function getBookFromstorage() {
-  return JSON.parse(localStorage.getItem("books")) || [];
-}
-//store books in myLibrary
-const myLibrary = getBookFromstorage();
-
-//add methods to object retrieved from localStorage
-myLibrary.forEach((book) => {
-  book.bookReadStatus = Book.prototype.readStatus;
-});
-
-//update books in local storage with books in myLibrary
-function moveBookToStorage() {
-  localStorage.setItem("books", JSON.stringify(myLibrary));
-}
-
-//define array that store books
-
 //Book constructor
 function Book(title, author, pages, read) {
   this.title = title;
@@ -36,6 +17,33 @@ Book.prototype.bookReadStatus = function (target) {
   const readStatus = this.read === "true" ? "read" : "Not read";
   target.textContent = `${readStatus}`;
 };
+
+//get all books from local storage
+function getBookFromstorage() {
+  return JSON.parse(localStorage.getItem("books")) || [];
+}
+//store books in myLibrary
+const myLibrary = getBookFromstorage();
+
+//add methods to objects retrieved from localStorage
+myLibrary.forEach((book) => {
+  book.bookReadStatus = function (target) {
+    if (this.read === "true") {
+      this.read = "false";
+    } else if (this.read === "false") {
+      this.read = "true";
+    }
+    const readStatus = this.read === "true" ? "read" : "Not read";
+    target.textContent = `${readStatus}`;
+  };
+});
+
+//update books in local storage with books in myLibrary
+function moveBookToStorage() {
+  localStorage.setItem("books", JSON.stringify(myLibrary));
+}
+
+//define array that store books
 
 //function that instantiate constructor and add book to list
 function addBookToList(title, author, pages, readStatus) {
@@ -94,7 +102,6 @@ function grabFormFielVAlues() {
     const readStatus = getReadStatus();
     //instantiate Book constructor
     addBookToList(bookTitle, bookAuthor, bookPages, readStatus);
-    displayBooks();
     //clear input fields after adding each book
     resetInputFields(titleFied, authorField, pagesField);
   });
@@ -118,16 +125,22 @@ const tableBody = document.querySelector(".table-body");
 tableBody.addEventListener("click", (e) => {
   const target = e.target;
   toggleBookReadStatus(target, myLibrary[target.dataset.readstatusindex]);
-  deleteBook(target);
+  moveBookToStorage();
 });
 
-function deleteBook(target) {
-  if (target.classList.contains("delete-btn")) {
-    //remove book from library
-    myLibrary.splice(target.dataset.index, 1);
-    //remove book from UI
-    target.parentElement.parentElement.remove();
-    //display current books in library
-    displayBooks();
-  }
+function deleteBook() {
+  const tableBody = document.querySelector(".table-body");
+  tableBody.addEventListener("click", (e) => {
+    const target = e.target;
+    if (target.classList.contains("delete-btn")) {
+      myLibrary.splice(target.dataset.bookindex, 1);
+      target.parentElement.parentElement.remove();
+      moveBookToStorage();
+      displayBooks();
+    }
+  });
 }
+
+displayBooks();
+
+deleteBook();
