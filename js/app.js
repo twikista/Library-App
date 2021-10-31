@@ -69,7 +69,7 @@ function displayBooks() {
       <td>${book.author}</td>
       <td>${book.pages}</td>
       <td><button class="btn read-btn" data-readstatusindex = "${index}">${readStatus}</button></td>
-      <td><button class="btn delete-btn" data-bookindex = "${index}">X</button></td>
+      <td><button class="btn delete-btn" data-bookindex = "${index}"><span class="material-icons delete-icon">delete</span></button></td>
       `;
 
     tableBody.append(tableRow);
@@ -131,16 +131,17 @@ tableBody.addEventListener("click", (e) => {
 function deleteBook() {
   const tableBody = document.querySelector(".table-body");
   tableBody.addEventListener("click", (e) => {
-    const target = e.target;
+    const target = e.target.closest("button");
     if (target.classList.contains("delete-btn")) {
       myLibrary.splice(target.dataset.bookindex, 1);
       target.parentElement.parentElement.remove();
-      moveBookToStorage();
-      displayBooks();
+      // localStorage.setItem("books", JSON.stringify(myLibrary));
+      // displayBooks();
     }
+    moveBookToStorage();
+    displayBooks();
   });
 }
-
 displayBooks();
 
 deleteBook();
@@ -184,3 +185,28 @@ function sortBooks() {
 }
 
 sortBooks();
+
+function openAddBookModal() {
+  const addBookModalBtn = document.querySelector(".add-book-btn");
+  addBookModalBtn.addEventListener("click", (e) => {
+    const target = e.target;
+    const addBookModal = document.querySelector(".input-book-detail-modal");
+
+    addBookModal.classList.add("active");
+  });
+}
+
+openAddBookModal();
+
+function closeAddBookModal() {
+  const addBookModal = document.querySelector(".input-book-detail-modal");
+  addBookModal.addEventListener("click", (e) => {
+    const target = e.target;
+    const closeModalIcon = document.querySelector(".close-icon");
+    if (target === addBookModal || target === closeModalIcon) {
+      addBookModal.classList.remove("active");
+    }
+  });
+}
+
+closeAddBookModal();
