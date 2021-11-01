@@ -91,9 +91,7 @@ form{
     position: relative;
 }
 
-.active{
-    display: flex;
-}
+
 
 .close-icon{
     color: #fff;
@@ -170,8 +168,20 @@ form input::placeholder{
     margin-left: 10px;
 }
 
-#submit-btn{
+#submit-btn, .save-btn{
     margin-top: 20px;
+}
+
+.save-btn{
+    display: none;
+}
+
+.hide{
+    display: none;
+}
+
+.active{
+    display: flex;
 }
 
 @media(max-width:300px){
