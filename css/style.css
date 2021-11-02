@@ -89,6 +89,7 @@ form{
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     position: relative;
+    z-index: 10;
 }
 
 
@@ -172,7 +173,7 @@ form input::placeholder{
     margin-top: 20px;
 }
 
-.save-btn{
+.edit-book-form{
     display: none;
 }
 

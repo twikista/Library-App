@@ -47,8 +47,9 @@
                         <button class="add-book-btn">Add book to Library</button>
                     </div>
                     <div class="input-book-detail-modal flex">
-                        <form action="" id="form" class="flex column">
+                        <form action="" id="form" class="add-book-form flex column">
                             <span class="material-icons close-icon">clear</span>
+                            <h3>Add Book</h3>
                             <input type="text" name="book-title" id="book-title" placeholder="Enter book title" class="block">
                             <input type="text" name="book-author" id="book-author" placeholder="Enter author's name" class="block">
                             <input type="text" name="book-pages" id="book-pages" placeholder="Enter number of pages">
@@ -67,6 +68,26 @@
                                 
                             </div>
                             <button type="submit"  value="Add Book" id="submit-btn"class="add-book-btn flex">Add Book</button>
+                        </form>
+                        <form action="" id="edit-book-form" class="edit-book-form flex column">
+                            <span class="material-icons close-icon">clear</span>
+                            <h3>Edit Book</h3>
+                            <input type="text" name="book-title" id="book-title" placeholder="Enter book title" class="block">
+                            <input type="text" name="book-author" id="book-author" placeholder="Enter author's name" class="block">
+                            <input type="text" name="book-pages" id="book-pages" placeholder="Enter number of pages">
+                            <div class="read-options-container flex column">
+                                <span class="read-option-question">Have you read the book?</span>
+                                <div class="read-options flex">
+                                    <div class="input-category read-status-no flex">
+                                        <label for="read-status-no">No</label>
+                                        <input type="radio" name="read-status" id="read-status-no" value="false" checked>   
+                                    </div>
+                                    <div class="input-category read-status-yes flex">
+                                        <label for="read-status-yes">Yes</label>
+                                        <input type="radio" name="read-status" id="read-status-yes" value="true">   
+                                    </div>
+                                </div>  
+                            </div>
                             <button type="submit"  value="save" class="flex save-btn">Save</button>
                         </form>
                     </div>
