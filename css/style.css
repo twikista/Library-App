@@ -61,10 +61,14 @@
     /* border: solid 2px red; */
 }
 
+button{
+    cursor: pointer;
+}
+
 .delete-btn{
-    /* background-color:transparent; */
-    /* border: none; */
-    /* outline: none; */
+    /* background-color:transparent;
+    border: none;
+    outline: none; */
 }
 
 .input-book-detail-modal{
@@ -108,7 +112,7 @@ form{
 
 
 
-tr{
+/* tr{
     border: red solid 3px;
 }
 
@@ -122,7 +126,7 @@ table{
 
 td{
     border: red solid 3px;
-}
+} */
 
 form input[type =text]{
     border-radius: 3px;
@@ -132,15 +136,30 @@ form input[type =text]{
     margin-bottom: 10px;
     /* height: 30px; */
     width: 95%;
-    padding: 8px;
+    padding: 10px;
     /* display: inline-block; */
     /* box-shadow:0 0 5px rgba(0, 0, 0, 0.5); */
-    color: #8f8f73;
+    color: #707070;
 }
 
+form input[type =text]:not(last-child){
+    margin-bottom: 15px;
+
+}
 form input[type =text]:focus{
     border: 2px rgba(0, 0, 0, 0.6) solid;
 }
+
+.error-message{
+    font-size: 14px;
+    color: rgb(243, 85, 45);
+    align-self: flex-start;
+    font-weight: 500;
+    padding-left: 8px;
+    padding-bottom: 2px;
+    display: none;
+}
+
 
 form input::placeholder{
     font-size: 12px;
@@ -169,7 +188,7 @@ form input::placeholder{
     margin-left: 10px;
 }
 
-#submit-btn, .save-btn{
+.add-book-btn, .save-changes-btn{
     margin-top: 20px;
 }
 

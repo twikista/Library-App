@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons&family=Material+Icons+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Pods Personal Library App</title>
 </head>
@@ -50,8 +50,11 @@
                         <form action="" id="form" class="add-book-form flex column">
                             <span class="material-icons close-icon">clear</span>
                             <h3>Add Book</h3>
+                            <span class="title-error-message error-message" data-fielderrormessage="Enter book title"></span>
                             <input type="text" name="book-title" id="book-title" placeholder="Enter book title" class="block">
+                            <span class="author-error-message error-message" data-fielderrormessage="Enter Author's name"></span>
                             <input type="text" name="book-author" id="book-author" placeholder="Enter author's name" class="block">
+                            <span class="pages-error-message error-message" data-fielderrormessage="Enter number of pages"></span>
                             <input type="text" name="book-pages" id="book-pages" placeholder="Enter number of pages">
                             <div class="read-options-container flex column">
                                 <span class="read-option-question">Have you read the book?</span>
@@ -67,14 +70,17 @@
                                 </div>
                                 
                             </div>
-                            <button type="submit"  value="Add Book" id="submit-btn"class="add-book-btn flex">Add Book</button>
+                            <button type="submit"  value="Add Book" class="add-book-btn flex">Add Book</button>
                         </form>
                         <form action="" id="edit-book-form" class="edit-book-form flex column">
                             <span class="material-icons close-icon">clear</span>
                             <h3>Edit Book</h3>
-                            <input type="text" name="book-title" id="book-title" placeholder="Enter book title" class="block">
-                            <input type="text" name="book-author" id="book-author" placeholder="Enter author's name" class="block">
-                            <input type="text" name="book-pages" id="book-pages" placeholder="Enter number of pages">
+                            <span class="title-error-message error-message" data-fielderrormessage="Enter book title"></span>
+                            <input type="text" name="book-title" id="book-title" placeholder="Enter book title" class="block title">
+                            <span class="author-error-message error-message" data-fielderrormessage="Enter Author's name"></span>
+                            <input type="text" name="book-author" id="book-author" placeholder="Enter author's name" class="block author">
+                            <span class="pages-error-message error-message" data-fielderrormessage="Enter number of pages"></span>
+                            <input type="text" name="book-pages" id="book-pages" placeholder="Enter number of pages" class="pages">
                             <div class="read-options-container flex column">
                                 <span class="read-option-question">Have you read the book?</span>
                                 <div class="read-options flex">
@@ -88,7 +94,7 @@
                                     </div>
                                 </div>  
                             </div>
-                            <button type="submit"  value="save" class="flex save-btn">Save</button>
+                            <button type="submit"  value="save" class="flex save-changes-btn">Save Changes</button>
                         </form>
                     </div>
                 </div>

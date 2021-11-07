@@ -68,20 +68,20 @@ myLibrary.forEach((book) => {
   };
 });
 
+//function that instantiate constructor and add book to list
+function createNewBook(title, author, pages, readStatus) {
+  const book = new Book(title, author, pages, readStatus);
+  myLibrary.push(book);
+  moveBookToStorage();
+  displayBooks();
+}
+
 //update books in local storage with books in myLibrary
 function moveBookToStorage() {
   localStorage.setItem("books", JSON.stringify(myLibrary));
 }
 
 //define array that store books
-
-//function that instantiate constructor and add book to list
-function addBookToList(title, author, pages, readStatus) {
-  const book = new Book(title, author, pages, readStatus);
-  myLibrary.push(book);
-  moveBookToStorage();
-  displayBooks();
-}
 
 //loop throgh myLibrary array and display each book
 function displayBooks() {
@@ -99,7 +99,7 @@ function displayBooks() {
       <td>${book.author}</td>
       <td>${book.pages}</td>
       <td><button class="btn read-btn" data-readstatusindex = "${index}">${readStatus}</button></td>
-      <td><button class="btn edit-book-btn" data-editbookindex = "${index}">Edit</button></td>
+      <td><button class="btn edit-book-btn" data-editbookindex = "${index}"><span class="material-icons delete-icon">edit</span></button></td>
       <td><button class="btn delete-btn" data-bookindex = "${index}"><span class="material-icons delete-icon">delete</span></button></td>
       `;
 
@@ -107,9 +107,10 @@ function displayBooks() {
   });
 }
 
-function grabFormFieldVAlues() {
+function addBookToLibrary() {
   const form = document.querySelector("#form");
   form.addEventListener("submit", (e) => {
+    const target = e.target;
     e.preventDefault();
     //grab HTML form fields
     const titleField = form.elements["book-title"];
@@ -131,30 +132,17 @@ function grabFormFieldVAlues() {
       return selectedValue;
     }
     const readStatus = getReadStatus();
-    // if (
-    //   target.lastElementChild.previousElementSibling.classList.contains(
-    //     "add-book-btn"
-    //   )
-    // ) {
-    //   //instantiate Book constructor
-    //   console.log("hey");
-    //   addBookToList(bookTitle, bookAuthor, bookPages, readStatus);
-    // } else if (target.lastElementChild.classList.contains("save-btn")) {
-    //   console.log("i am");
-    //   console.log(target);
-    // function setBookDetails(instanceofBook, clickBtn) {
-    //   instanceofBook.bookDetails(
-    //     titleField,
-    //     authorField,
-    //     pagesField,
-    //     clickBtn
-    //   );
-    // }
-    // const clickBtn = target.lastElementChild;
-    // setBookDetails(myLibrary[objindex], clickBtn);
-    // }
+
     //  instantiate Book constructor
-    addBookToList(bookTitle, bookAuthor, bookPages, readStatus);
+    validateFormFields(
+      createNewBook,
+      target,
+      bookTitle,
+      bookAuthor,
+      bookPages,
+      readStatus
+    );
+    // addBookToList(bookTitle, bookAuthor, bookPages, readStatus);
 
     //clear input fields after adding each book
     resetInputFields(titleField, authorField, pagesField);
@@ -167,7 +155,7 @@ function resetInputFields(titleField, authorField, pagesField) {
   pagesField.value = "";
 }
 
-grabFormFieldVAlues();
+addBookToLibrary();
 
 function toggleBookReadStatus(target, instanceofBook) {
   if (target.tagName === "BUTTON" && target.classList.contains("read-btn")) {
@@ -229,8 +217,10 @@ function sortBooks() {
       sortTerm = target.value;
     }
     myLibrary.sort((x, y) => {
-      const a = x[sortTerm];
-      const b = y[sortTerm];
+      let a = x[sortTerm];
+      let b = y[sortTerm];
+      a = a.toLowerCase();
+      b = b.toLowerCase();
       return a === b ? 0 : a > b ? 1 : -1;
     });
     moveBookToStorage();
@@ -277,7 +267,8 @@ function openEditBookModal() {
     instanceofBook.bookDetails(titleField, authorField, pagesField);
   }
   tableBody.addEventListener("click", (e) => {
-    const target = e.target;
+    // const target = e.target;
+    const target = e.target.closest("button");
     if (target.classList.contains("edit-book-btn")) {
       getBookDetails(myLibrary[target.dataset.editbookindex]);
       objindex = myLibrary.indexOf(myLibrary[target.dataset.editbookindex]);
@@ -300,6 +291,8 @@ function closeAddBookModal() {
     const closeEditBookModalIcon = document.querySelector(
       ".edit-book-form .close-icon"
     );
+    const saveChangesBtn = document.querySelector(".save-changes-btn");
+    const addBookBtn = document.querySelector(".add-book-btn");
     if (
       target === addBookModal ||
       target === closeAddBookModalIcon ||
@@ -312,19 +305,28 @@ function closeAddBookModal() {
 
 closeAddBookModal();
 
+function removeModal() {
+  const addBookModal = document.querySelector(".input-book-detail-modal");
+  addBookModal.classList.remove("active");
+}
+
 function editBook() {
-  const saveBtn = document.querySelector("save-btn");
   const editBookForm = document.querySelector(".edit-book-form");
 
   editBookForm.addEventListener("submit", (e) => {
     const target = e.target;
     e.preventDefault();
     console.log("saved!");
+    console.log(target);
     //grab HTML form fields
     const titleField = editBookForm.elements["book-title"];
     const authorField = editBookForm.elements["book-author"];
     const pagesField = editBookForm.elements["book-pages"];
     const readStatusRadios = editBookForm.elements["read-status"];
+    //grab the value of HTML form fields
+    const bookTitle = titleField.value;
+    const bookAuthor = authorField.value;
+    const bookPages = pagesField.value;
     //get the value of selected radio button
     function getReadStatus() {
       let selectedValue;
@@ -336,7 +338,7 @@ function editBook() {
       return selectedValue;
     }
     const readStatus = getReadStatus();
-    console.log(target);
+    console.log(readStatus);
     function setBookDetails(instanceofBook) {
       instanceofBook.modifyBookDetails(
         titleField,
@@ -345,10 +347,53 @@ function editBook() {
         readStatus
       );
     }
-    setBookDetails(myLibrary[objindex]);
+    validateFormFields(
+      setBookDetails,
+      target,
+      bookTitle,
+      bookAuthor,
+      bookPages
+    );
+    // setBookDetails(myLibrary[objindex]);
     moveBookToStorage();
     displayBooks();
   });
 }
 
 editBook();
+
+function validateFormFields(
+  fun,
+  formType,
+  bookTitle,
+  bookAuthor,
+  bookPages,
+  readStatus
+) {
+  const errorMessages = formType.querySelectorAll(".error-message");
+  if (bookTitle === "" || bookAuthor === "" || bookPages === "") {
+    errorMessages.forEach((message) => {
+      if (message.nextElementSibling.value === "") {
+        message.textContent = `${message.dataset.fielderrormessage} `;
+        message.style.display = "block";
+        console.log(message.nextElementSibling);
+        message.nextElementSibling.style.borderColor = "red";
+        message.nextElementSibling.style.borderStyle = "solid";
+      }
+    });
+    return;
+  } else {
+    errorMessages.forEach((message) => {
+      message.style.display = "none";
+      console.log(message.nextElementSibling);
+      //message.nextElementSibling.style.borderColor = "no";
+      message.nextElementSibling.style.borderStyle = "none";
+    });
+    if (formType.classList.contains("add-book-form")) {
+      fun(bookTitle, bookAuthor, bookPages, readStatus);
+    } else if (formType.classList.contains("edit-book-form")) {
+      fun(myLibrary[objindex]);
+    }
+    removeModal();
+  }
+}
