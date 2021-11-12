@@ -10,11 +10,11 @@
 </head>
 <body>
     <div class="app-container">
-        <header class="app-header">
+        <header class="app-header flex column">
             <div class="logo-container flex">
                 <div class="logo">
-                    <span>Pods</span>
-                    <span>&trade;</span>
+                    <span class="first-shape"></span>
+                    <!-- <span>&trade;</span> -->
                 </div>
                 <h1>Pods Personal Library App</h1>
             </div>
@@ -25,18 +25,15 @@
                 </div>
                 <div class="sort-section flex">
                     <h3>Sort books by:</h3>
-                    <div class="sort-criteria author flex">
-                        <input type="radio" name ="sort" id="author" value="author">
-                        <label for="author" class="block">author</label>   
-                    </div>
-                    <div class="sort-criteria title flex">
-                        <input type="radio" name="sort" id="title" value="title">
-                        <label for="title" id="title" class="block">titile</label>   
-                    </div>
-                    <div class="sort-criteria read-status flex">
-                        <input type="radio" name="sort" id="read-status" value="read">
-                        <label for="read-status" class="block">read status</label>
-                    </div>
+                        <label for="author" class="radio-label">
+                            <input type="radio" name ="sort" id="author" value="author">
+                            author</label>   
+                        <label for="title" id="title" class="radio-label">
+                            <input type="radio" name="sort" id="title" value="title">
+                            titile</label>   
+                        <label for="read-status" class="radio-label last-child">
+                            <input type="radio" name="sort" id="read-status" value="read">
+                            read status</label>
                 </div>
             </div>
         </header>
@@ -102,19 +99,20 @@
                 
             </section>
             <section class="book-display-container flex column">
-                <table class="books">
+                <!-- <table class="books">
                     <thead>
                         <tr>
                             <th>Title</th>
                             <th>Author</th>
-                            <th>pages</th>
-                            <th>Read Status</th>
-                            <th></th>
+                            <th class="small-columns">pages</th>
+                            <th class="small-columns">Read Status</th>
+                            <th class="small-columns"></th>
+                            <th class="small-columns"></th>
                         </tr>
                     </thead>
                     <tbody class="table-body"></tbody>
-                </table>
-                    
+                </table> -->
+                <div class="content"></div>   
             </section>
         </main>
     </div>

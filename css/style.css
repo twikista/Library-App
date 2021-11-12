@@ -1,6 +1,116 @@
-*{
-    box-sizing: border-box;
+:root{
+    --radio-color:rebeccapurple;
 }
+
+*, *::before, *::after{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color: #f6efef ;
+}
+
+.app-container{
+    width: 90%;
+    max-width: 920px;
+    margin: 0 auto;
+    
+}
+
+.app-header{
+    /* height: 100vh; */
+}
+
+.app-header h1{
+    font-size: 56px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    padding-top: 20px;
+}
+
+.first-shape{
+    background-color: red;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.custom-search-filter{
+    width: 70%;
+    /* border: solid red 1px; */
+}
+
+
+
+.search{
+    width: inherit;
+}
+
+.search-box{
+    border:none;
+    outline:none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 50px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 1px 0 3px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    padding-left: 25px;
+}
+
+.radio-label{
+    font-family: system-ui, sans-serif;
+    font-size: 1rem;
+    /* font-weight: bold; */
+    line-height: 1.1;
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.3em;
+}
+
+input[type ="radio"]{
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+}
+
+
+
+.radio-label + .radio-label{
+    margin-left: 1em;
+}
+
+input[type="radio"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--radio-color);
+    background-color:CanvasText;
+  }
+
+input[type="radio"]:checked::before {
+    transform: scale(1);
+  }
+
+input[type="radio"]:focus {
+    background-color: red;
+  }
+
+  .radio-label:focus-within{
+    color:var(--radio-color)
+  }
 
 .block{
     display: block;
@@ -19,50 +129,21 @@
 
 .book-display-container{
     row-gap: 10px;
-    width: 960px;
-    border: 2px solid red;
+    width: inherit;
+    /* border: 2px solid red; */
 }
 
-.table-row{
-    background-color: #ffff99;
-    width: 100%;
-    
-}
 
-.heading-row, .content-row{
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    /* border: solid 2px red; */
-    background-color: #8f8f73;
-}
-
-.heading-row{
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.heading{
-    justify-self: center;
-    /* justify-content: center; */
-    border: solid 2px red;
-    
-}
-
-.heading-title{
-    /* width: 45%; */
-    flex-grow: 60%;
-    
-}
-
-.content{
-    justify-self: center;
-    width: 25%;
-    /* border: solid 2px red; */
-}
 
 button{
     cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+.material-icons{
+    color: #994ff3;
 }
 
 .delete-btn{
@@ -83,6 +164,25 @@ button{
     transition: ease 0.3s;
 
 }
+
+.content{
+    width: 80%;
+    display: grid;
+    row-gap: 10px;
+    padding: 10px 20px 10px 20px;
+}
+
+.row{
+    display: grid;
+    background-color: #e2daeb;
+    grid-template-columns: 1fr 20% 10% 10% 10% 10%;
+    border:#994ff3 solid 1px;
+    padding: 15px 20px 15px 20px;
+    align-items: center;
+    border-radius: 5px;
+}
+
+
 
 form{
     background-color: royalblue;
@@ -109,24 +209,6 @@ form{
     font-weight: 900;
 
 }
-
-
-
-/* tr{
-    border: red solid 3px;
-}
-
-th{
-    border: red solid 3px;  
-}
-
-table{
-    border: red solid 3px;
-}
-
-td{
-    border: red solid 3px;
-} */
 
 form input[type =text]{
     border-radius: 3px;
@@ -204,7 +286,29 @@ form input::placeholder{
     display: flex;
 }
 
-@media(max-width:300px){
+
+@media(max-width:615px){
+    .content{
+        width: 90%;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 10px;
+    }
+
+    .row{
+        
+        grid-template-columns: 1fr;
+        /* border: red solid 1px; */
+        padding: 10px 10px 11px 10px;
+        align-items: center;
+        border-radius: 5px;
+    }
+
+    .last-child{
+        transform: translateY(0.45em);
+        }
+}
+
+@media(max-width:400px){
     form{
         width: 80%;
         min-width: 200px;
@@ -218,5 +322,20 @@ form input::placeholder{
 
     form input::placeholder{
         font-size: 10px;
+    }
+
+    .content{
+        grid-template-columns:1fr;
+        column-gap: 10px;
+    }
+
+
+    .row{
+        
+        grid-template-columns: 1fr;
+        /* border: red solid 1px; */
+        padding: 10px 10px 11px 10px;
+        align-items: center;
+        border-radius: 5px;
     }
 }

@@ -84,27 +84,51 @@ function moveBookToStorage() {
 //define array that store books
 
 //loop throgh myLibrary array and display each book
+// function displayBooks() {
+//   //check for and remove existing book from page
+//   const tableBody = document.querySelector(".table-body");
+//   while (tableBody.firstChild) {
+//     tableBody.removeChild(tableBody.firstChild);
+//   }
+
+//   myLibrary.forEach((book, index) => {
+//     const readStatus = book.read === "true" ? "read" : "Not read";
+//     const tableRow = document.createElement("tr");
+//     tableRow.innerHTML = `
+//       <td>${book.title}</td>
+//       <td>${book.author}</td>
+//       <td>${book.pages}</td>
+//       <td><button class="btn read-btn" data-readstatusindex = "${index}">${readStatus}</button></td>
+//       <td><button class="btn edit-book-btn" data-editbookindex = "${index}"><span class="material-icons delete-icon">edit</span></button></td>
+//       <td><button class="btn delete-btn" data-bookindex = "${index}"><span class="material-icons delete-icon">delete</span></button></td>
+//       `;
+
+//     tableBody.append(tableRow);
+//   });
+// }
 function displayBooks() {
   //check for and remove existing book from page
-  const tableBody = document.querySelector(".table-body");
+  const tableBody = document.querySelector(".content");
+  console.log(tableBody.firstChild);
   while (tableBody.firstChild) {
     tableBody.removeChild(tableBody.firstChild);
   }
-
   myLibrary.forEach((book, index) => {
     const readStatus = book.read === "true" ? "read" : "Not read";
-    const tableRow = document.createElement("tr");
+    const tableRow = document.createElement("div");
+    tableRow.className = "row";
     tableRow.innerHTML = `
-      <td>${book.title}</td>
-      <td>${book.author}</td>
-      <td>${book.pages}</td>
-      <td><button class="btn read-btn" data-readstatusindex = "${index}">${readStatus}</button></td>
-      <td><button class="btn edit-book-btn" data-editbookindex = "${index}"><span class="material-icons delete-icon">edit</span></button></td>
-      <td><button class="btn delete-btn" data-bookindex = "${index}"><span class="material-icons delete-icon">delete</span></button></td>
-      `;
+    <div>${book.title}</div>
+    <div>${book.author}</div>
+    <div>${book.pages}</div>
+    <div><button class="btn read-btn" data-readstatusindex = "${index}">${readStatus}</button></div>
+    <div><button class="btn edit-book-btn" data-editbookindex = "${index}"><span class="material-icons delete-icon">edit</span></button></div>
+    <div><button class="btn delete-btn" data-bookindex = "${index}"><span class="material-icons delete-icon">delete_forever</span></button></div>
+    `;
 
     tableBody.append(tableRow);
   });
+  console.log(tableBody.firstChild);
 }
 
 function addBookToLibrary() {
@@ -163,7 +187,7 @@ function toggleBookReadStatus(target, instanceofBook) {
   }
 }
 
-const tableBody = document.querySelector(".table-body");
+const tableBody = document.querySelector(".content");
 tableBody.addEventListener("click", (e) => {
   const target = e.target;
   toggleBookReadStatus(target, myLibrary[target.dataset.readstatusindex]);
@@ -171,12 +195,12 @@ tableBody.addEventListener("click", (e) => {
 });
 
 function deleteBook() {
-  const tableBody = document.querySelector(".table-body");
+  const tableBody = document.querySelector(".content");
   tableBody.addEventListener("click", (e) => {
     const target = e.target.closest("button");
     if (target.classList.contains("delete-btn")) {
       myLibrary.splice(target.dataset.bookindex, 1);
-      target.parentElement.parentElement.remove();
+      target.parentElement.remove();
       // localStorage.setItem("books", JSON.stringify(myLibrary));
       // displayBooks();
     }
@@ -191,7 +215,8 @@ deleteBook();
 const searchBox = document.querySelector(".search-box");
 searchBox.addEventListener("keyup", (e) => {
   const searchTerm = e.target.value.toLowerCase();
-  const books = tableBody.querySelectorAll("tr");
+  const books = tableBody.querySelectorAll(".row");
+  console.log(books);
   books.forEach((book) => {
     const bookTitle = book.firstElementChild.textContent.toLowerCase();
     const bookAuthor =
@@ -200,9 +225,9 @@ searchBox.addEventListener("keyup", (e) => {
       bookTitle.indexOf(searchTerm) !== -1 ||
       bookAuthor.indexOf(searchTerm) !== -1
     ) {
-      book.style.visibility = "visible";
+      book.style.display = "grid";
     } else {
-      book.style.visibility = "collapse";
+      book.style.display = "none";
     }
   });
 });
@@ -258,7 +283,7 @@ function openAddBookModal() {
 openAddBookModal();
 
 function openEditBookModal() {
-  const tableBody = document.querySelector(".table-body");
+  const tableBody = document.querySelector(".content");
   const editBookForm = document.querySelector(".edit-book-form");
   function getBookDetails(instanceofBook) {
     const titleField = editBookForm.elements["book-title"];
@@ -304,20 +329,19 @@ function closeAddBookModal() {
 }
 
 closeAddBookModal();
-
+//remove add book and edit book book modal on click of add to book button
+//or save changes button
 function removeModal() {
   const addBookModal = document.querySelector(".input-book-detail-modal");
   addBookModal.classList.remove("active");
 }
 
+//edit book deatails
 function editBook() {
   const editBookForm = document.querySelector(".edit-book-form");
-
   editBookForm.addEventListener("submit", (e) => {
     const target = e.target;
     e.preventDefault();
-    console.log("saved!");
-    console.log(target);
     //grab HTML form fields
     const titleField = editBookForm.elements["book-title"];
     const authorField = editBookForm.elements["book-author"];
@@ -338,7 +362,6 @@ function editBook() {
       return selectedValue;
     }
     const readStatus = getReadStatus();
-    console.log(readStatus);
     function setBookDetails(instanceofBook) {
       instanceofBook.modifyBookDetails(
         titleField,
@@ -361,7 +384,7 @@ function editBook() {
 }
 
 editBook();
-
+//validate form fields before adding book to library or editing existing book in library
 function validateFormFields(
   fun,
   formType,
@@ -376,7 +399,6 @@ function validateFormFields(
       if (message.nextElementSibling.value === "") {
         message.textContent = `${message.dataset.fielderrormessage} `;
         message.style.display = "block";
-        console.log(message.nextElementSibling);
         message.nextElementSibling.style.borderColor = "red";
         message.nextElementSibling.style.borderStyle = "solid";
       }
@@ -385,7 +407,6 @@ function validateFormFields(
   } else {
     errorMessages.forEach((message) => {
       message.style.display = "none";
-      console.log(message.nextElementSibling);
       //message.nextElementSibling.style.borderColor = "no";
       message.nextElementSibling.style.borderStyle = "none";
     });
