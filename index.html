@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons&family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Pods Personal Library App</title>
 </head>
@@ -13,8 +13,7 @@
         <header class="app-header flex column">
             <div class="logo-container flex">
                 <div class="logo">
-                    <span class="first-shape"></span>
-                    <!-- <span>&trade;</span> -->
+                    <span class="first-shape"></span>               
                 </div>
                 <h1>Pods Personal Library App</h1>
             </div>
@@ -25,23 +24,26 @@
                 </div>
                 <div class="sort-section flex">
                     <h3>Sort books by:</h3>
-                        <label for="author" class="radio-label">
-                            <input type="radio" name ="sort" id="author" value="author">
-                            author</label>   
-                        <label for="title" id="title" class="radio-label">
-                            <input type="radio" name="sort" id="title" value="title">
-                            titile</label>   
-                        <label for="read-status" class="radio-label last-child">
-                            <input type="radio" name="sort" id="read-status" value="read">
-                            read status</label>
+                    <div class="sort-radio-container flex">
+                        <input type="radio" name ="sort" id="author" value="author">
+                        <label for="author" class="radio-label">author</label> 
+                    </div>
+                    <div class="sort-radio-container flex">
+                        <input type="radio" name="sort" id="title" value="title">  
+                        <label for="title" id="title" class="radio-label">title</label>
+                    </div>
+                    <div class="sort-radio-container flex" >
+                        <input type="radio" name="sort" id="read-status" value="read">   
+                        <label for="read-status" class="radio-label last-child">read status</label>
+                    </div>
                 </div>
             </div>
         </header>
-        <main class="app-main">
+        <main class="app-main flex column">
             <section class="input-book-details-section">
                 <div class="input-book-details-container flex column">
                     <div class="add-btn-conatainer">
-                        <button class="add-book-btn">Add book to Library</button>
+                        <button class="new-book-btn">Add book to Library</button>
                     </div>
                     <div class="input-book-detail-modal flex">
                         <form action="" id="form" class="add-book-form flex column">

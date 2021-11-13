@@ -13,79 +13,162 @@ body{
 }
 
 .app-container{
+    /* border: red solid 1px; */
+}
+
+.app-main{
     width: 90%;
     max-width: 920px;
     margin: 0 auto;
     
 }
 
-.app-header{
-    /* height: 100vh; */
-}
-
 .app-header h1{
     font-size: 56px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     margin-top: 40px;
     padding-top: 20px;
+    color: #4c346b;
 }
+
 
 .first-shape{
     background-color: red;
     display: inline-block;
     width: 20px;
     height: 20px;
+    
 }
 
+
+
 .custom-search-filter{
-    width: 70%;
-    /* border: solid red 1px; */
+    width: 80%;
 }
 
 
 
 .search{
-    width: inherit;
+    width: 70%;
+    text-align: center;
 }
 
 .search-box{
-    border:none;
+    font-size: 16px;
+    color: #4c346b;
+    background-color: transparent;
+    border:#4c346b solid 2px;
     outline:none;
-    padding: 12px;
-    width: 100%;
-    border-radius: 50px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 1px 0 3px rgba(0, 0, 0, 0.2);
-    margin-bottom: 30px;
-    padding-left: 25px;
+    padding: 10px;
+    width: 70%;
+    min-width: 300px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    cursor: pointer;
+    transition: ease-in 0.1s;
 }
 
-.radio-label{
+.search-box:placeholder-shown{
+    color: #663399;
+}
+
+.search-box::placeholder{
+    color: #663399;
+    text-align: center;
+}
+
+.search-box:focus{
+    border-color: #663399 ;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.sort-section{
+    width: inherit;
+    color:#4c346b;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+
+
+/* .sort-section h3{
+    color:#4c346b;
+} */
+
+/* img{width:25opx;height:100px} */
+
+/* .radio-label{
     font-family: system-ui, sans-serif;
     font-size: 1rem;
-    /* font-weight: bold; */
+    color: #4c346b;
+    font-weight: bold;
     line-height: 1.1;
     display: grid;
     grid-template-columns: 1em auto;
     gap: 0.3em;
-}
+} */
 
-input[type ="radio"]{
+/* input[type ="radio"]{
     appearance: none;
-    background-color: #fff;
+    background-color: #f6efef;
     margin: 0;
     font: inherit;
-    color: currentColor;
+    color: #4c346b;
     width: 1.15em;
     height: 1.15em;
     border: 0.15em solid currentColor;
     border-radius: 50%;
     display: grid;
     place-content: center;
+} */
+
+input[type="radio"]{
+    /* margin-bottom: 1.2rem; */
+    width: 0;
+    opacity: 0;
+    margin: 0;
 }
 
+label{
+    /* margin-right: 1.2rem; */
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: "arial", sans-serif;
+    padding-left: 18px;
+    background: url("../img/radio.png") no-repeat 0 0;
+    margin-bottom: 0.3rem;
+    margin-top: 0.5rem;
+}
 
+label:hover{
+    background: url("../img/radio.png") no-repeat 0 -24px;
+    cursor: pointer;
+}
 
-.radio-label + .radio-label{
+input[type = "radio"]:checked + label{
+    background: url("../img/radio.png") no-repeat 0 -48px;
+    color: #663399
+}
+
+.new-book-btn{
+    border: solid 2px #4c346b;
+    border-radius: 5px;
+    padding: 10px 15px 10px 15px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #4c346b;
+    transition: all 0.5s;
+}
+
+.new-book-btn:hover{
+    background-color: #4c346b;
+    color:#f6efef;
+}
+
+/* .radio-label + .radio-label{
     margin-left: 1em;
 }
 
@@ -105,12 +188,12 @@ input[type="radio"]:checked::before {
   }
 
 input[type="radio"]:focus {
-    background-color: red;
+    background-color:#f3e7e7;
   }
 
   .radio-label:focus-within{
     color:var(--radio-color)
-  }
+  } */
 
 .block{
     display: block;
@@ -142,14 +225,50 @@ button{
     border: none;
 }
 
-.material-icons{
-    color: #994ff3;
+.material-icons-outlined{
+    color: #663399;
+
 }
 
-.delete-btn{
-    /* background-color:transparent;
-    border: none;
-    outline: none; */
+.delete-book-btn:hover, .edit-book-btn:hover{
+    color: #f6efef;
+    border: #663399 2px solid;
+    background-color: #663399;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    font-size: 10px;
+}
+
+.delete-book-btn:hover .material-icons-outlined{
+    font-size: 20px;
+    color: #f6efef;
+
+}
+
+.edit-book-btn:hover .material-icons-outlined{
+    font-size: 20px;
+    color: #f6efef;
+
+}
+
+.edit-book-btn, .delete-book-btn{
+    align-items: center;
+    font-weight: 600;
+    font-size: 12px;
+    color: #663399;
+    align-self: center;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.read-book-status{
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    border: #663399 2px solid;
+    font-weight: 600;
+    color: #663399;
 }
 
 .input-book-detail-modal{
@@ -166,20 +285,24 @@ button{
 }
 
 .content{
-    width: 80%;
+    width: 85%;
     display: grid;
-    row-gap: 10px;
+    row-gap: 8px;
     padding: 10px 20px 10px 20px;
+    /* justify-content: center;
+    align-items: center; */
 }
 
 .row{
     display: grid;
     background-color: #e2daeb;
-    grid-template-columns: 1fr 20% 10% 10% 10% 10%;
+    grid-template-columns: 1fr 15% 5% 18% 8% 8%;
+    column-gap: 10px;
     border:#994ff3 solid 1px;
     padding: 15px 20px 15px 20px;
     align-items: center;
     border-radius: 5px;
+    color: #663399;
 }
 
 
@@ -286,12 +409,59 @@ form input::placeholder{
     display: flex;
 }
 
+@media(max-width:764px){
+    .first-shape{
+        width: 15px;
+        height: 15px;
+        align-self: center;
+        border: solid red 3px;
+    }
 
-@media(max-width:615px){
+    .app-header h1{
+        font-size: 44px;
+    }
+
+    .sort-section h3{
+        font-size: 16px;
+    }
+
+    label{
+
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .read-book-status{
+        font-size: 10px;
+        padding: 10px 7px;
+    }
+}
+
+
+@media(max-width:634px){
+    .app-main{
+        width: 95%;
+    }
+
+    .sort-section{
+        gap: 5px;
+        width: 90%;    
+    }
+
+    label{
+
+        font-size: 12px;
+        font-weight: 600;
+        padding-bottom: 3px;
+        /* margin-bottom: -5px; */
+        
+    }
+
     .content{
         width: 90%;
         grid-template-columns: repeat(2, 1fr);
         column-gap: 10px;
+        
     }
 
     .row{
@@ -303,16 +473,77 @@ form input::placeholder{
         border-radius: 5px;
     }
 
-    .last-child{
-        transform: translateY(0.45em);
+    /*  */
+
+        .app-header h1{
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+
+        .search-box{
+            width: 80%;
+            min-width: 200px;
+            font-size: 12px;
+            padding: 10px;
+        }
+
+        .sort-section h3{
+            font-size: 14px;
         }
 }
 
-@media(max-width:400px){
+@media(max-width:464px){
+
+    .content{
+        grid-template-columns:1fr;
+        column-gap: 10px;
+        max-width: 280px;
+        min-width: 200px;
+        border: solid 1px green;
+        
+    }
+
+    .app-header{
+        min-width: 200px;
+    }
+
+    .app-header h1{
+        font-size: 18px;
+        margin-bottom: 10px;
+        margin-top: 15px;
+    }
+    .search-box{
+        width: 80%;
+        min-width: 120px;
+        font-size: 10px;
+        padding: 5px;
+        margin-bottom: 8px;
+    }
+
+    .sort-section{
+        gap: 3px;
+        width: 100%;    
+    }
+
+    .sort-section h3{
+        font-size: 12px;
+    }
+
+
     form{
         width: 80%;
         min-width: 200px;
         padding: 7px;
+        
+    }
+
+    label{
+
+        font-size: 12px;
+        font-weight: 500;
+        /* padding-bottom: 6px; */
+        /* margin-bottom: -5px; */
         
     }
 
@@ -324,10 +555,7 @@ form input::placeholder{
         font-size: 10px;
     }
 
-    .content{
-        grid-template-columns:1fr;
-        column-gap: 10px;
-    }
+    
 
 
     .row{
@@ -337,5 +565,43 @@ form input::placeholder{
         padding: 10px 10px 11px 10px;
         align-items: center;
         border-radius: 5px;
+        min-width: 158px;
+        align-self: center;
+        /* justify-self: center; */
     }
+}
+
+@media(max-width:340px){
+    .sort-section{
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+    }
+
+    .app-header h1{
+        font-size: 15px;
+    }
+
+    .sort-section h3{
+       margin-bottom: -3px;
+    }
+
+    .sort-radio-container{
+        width: 90%;
+        min-width: 100px;
+    }
+
+    label{
+
+        font-size: 12px;
+        font-weight: 600;
+        /* padding-bottom: 6px; */
+        margin-bottom: -5px;
+        width:100px;
+        
+    }
+
+    
+
+    
 }

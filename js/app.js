@@ -121,9 +121,9 @@ function displayBooks() {
     <div>${book.title}</div>
     <div>${book.author}</div>
     <div>${book.pages}</div>
-    <div><button class="btn read-btn" data-readstatusindex = "${index}">${readStatus}</button></div>
-    <div><button class="btn edit-book-btn" data-editbookindex = "${index}"><span class="material-icons delete-icon">edit</span></button></div>
-    <div><button class="btn delete-btn" data-bookindex = "${index}"><span class="material-icons delete-icon">delete_forever</span></button></div>
+    <div><button class="btn read-book-status " data-readstatusindex = "${index}">${readStatus}</button></div>
+    <div class="flex"><button class="btn edit-book-btn flex column" data-editbookindex = "${index}"><span class="material-icons-outlined delete-icon">edit</span>edit</button></div>
+    <div class="flex"><button class="btn delete-book-btn flex column" data-bookindex = "${index}"><span class="material-icons-outlined delete-icon">delete</span>delete</button></div>
     `;
 
     tableBody.append(tableRow);
@@ -182,7 +182,10 @@ function resetInputFields(titleField, authorField, pagesField) {
 addBookToLibrary();
 
 function toggleBookReadStatus(target, instanceofBook) {
-  if (target.tagName === "BUTTON" && target.classList.contains("read-btn")) {
+  if (
+    target.tagName === "BUTTON" &&
+    target.classList.contains("read-book-status")
+  ) {
     instanceofBook.bookReadStatus(target);
   }
 }
@@ -198,7 +201,7 @@ function deleteBook() {
   const tableBody = document.querySelector(".content");
   tableBody.addEventListener("click", (e) => {
     const target = e.target.closest("button");
-    if (target.classList.contains("delete-btn")) {
+    if (target.classList.contains("delete-book-btn")) {
       myLibrary.splice(target.dataset.bookindex, 1);
       target.parentElement.remove();
       // localStorage.setItem("books", JSON.stringify(myLibrary));
@@ -267,7 +270,7 @@ function switchFormSubmitButton(target) {
   }
 }
 function openAddBookModal() {
-  const addBookModalBtn = document.querySelector(".add-book-btn");
+  const addBookModalBtn = document.querySelector(".new-book-btn");
   const titleField = form.elements["book-title"];
   const authorField = form.elements["book-author"];
   const pagesField = form.elements["book-pages"];
