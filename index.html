@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Pods Personal Library App</title>
 </head>
@@ -61,16 +62,14 @@
                                 <div class="read-options flex">
                                     <div class="input-category read-status-no flex">
                                        
-                                        <input type="radio" name="read-status" id="read-status-no" value="false" checked>   
+                                        <input type="radio" name="read-status" id="read-status-no" value="false" checked class="radio-form">   
                                         <label for="read-status-no">No</label>
                                     </div>
                                     <div class="input-category read-status-yes flex">
-                                        
-                                        <input type="radio" name="read-status" id="read-status-yes" value="true">  
+                                        <input type="radio" name="read-status" id="read-status-yes" value="true" class="radio-form">  
                                         <label for="read-status-yes">Yes</label> 
                                     </div>
-                                </div>
-                                
+                                </div>  
                             </div>
                             <button type="submit"  value="Add Book" class="add-book-btn flex">Add Book</button>
                         </form>
@@ -78,21 +77,21 @@
                             <span class="material-icons-outlined close-icon">clear</span>
                             <h3>Edit Book</h3>
                             <span class="title-error-message error-message" data-fielderrormessage="Enter book title"></span>
-                            <input type="text" name="book-title" id="book-title" placeholder="Enter book title" class="block title">
+                            <input type="text" name="book-title" id="book-title" placeholder="Enter book title" class="block">
                             <span class="author-error-message error-message" data-fielderrormessage="Enter Author's name"></span>
-                            <input type="text" name="book-author" id="book-author" placeholder="Enter author's name" class="block author">
+                            <input type="text" name="book-author" id="book-author" placeholder="Enter author's name" class="block">
                             <span class="pages-error-message error-message" data-fielderrormessage="Enter number of pages"></span>
-                            <input type="text" name="book-pages" id="book-pages" placeholder="Enter number of pages" class="pages">
+                            <input type="text" name="book-pages" id="book-pages" placeholder="Enter number of pages">
                             <div class="read-options-container flex column">
                                 <span class="read-option-question">Have you read the book?</span>
                                 <div class="read-options flex">
                                     <div class="input-category read-status-no flex">
-                                        <label for="read-status-no">No</label>
-                                        <input type="radio" name="read-status" id="read-status-no" value="false" checked>   
+                                        <input type="radio" name="edit-form-read-status" id="edit-form-read-status-no" value="false" checked class="radio-form">   
+                                        <label for="edit-form-read-status-no">No</label>
                                     </div>
                                     <div class="input-category read-status-yes flex">
-                                        <label for="read-status-yes">Yes</label>
-                                        <input type="radio" name="read-status" id="read-status-yes" value="true">   
+                                        <input type="radio" name="edit-form-read-status" id="edit-form-read-status-yes" value="true" class="radio-form">  
+                                        <label for="edit-form-read-status-yes">Yes</label> 
                                     </div>
                                 </div>  
                             </div>

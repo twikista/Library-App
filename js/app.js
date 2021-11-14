@@ -325,7 +325,7 @@ function editBook() {
     const titleField = editBookForm.elements["book-title"];
     const authorField = editBookForm.elements["book-author"];
     const pagesField = editBookForm.elements["book-pages"];
-    const readStatusRadios = editBookForm.elements["read-status"];
+    const readStatusRadios = editBookForm.elements["edit-form-read-status"];
     //grab the value of HTML form fields
     const bookTitle = titleField.value;
     const bookAuthor = authorField.value;
