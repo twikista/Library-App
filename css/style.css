@@ -1,5 +1,5 @@
 :root{
-    --radio-color:rebeccapurple;
+    --radio-color:#663399;
 }
 
 *, *::before, *::after{
@@ -20,6 +20,7 @@ body{
     width: 90%;
     max-width: 920px;
     margin: 0 auto;
+    padding-bottom: 40px;
     
 }
 
@@ -76,6 +77,7 @@ body{
 .search-box::placeholder{
     color: #663399;
     text-align: center;
+    font-weight: 600;
 }
 
 .search-box:focus{
@@ -123,14 +125,14 @@ body{
     place-content: center;
 } */
 
-input[type="radio"]{
+.sort-radio-container [type="radio"]{
     /* margin-bottom: 1.2rem; */
     width: 0;
     opacity: 0;
     margin: 0;
 }
 
-label{
+.sort-radio-container label{
     /* margin-right: 1.2rem; */
     display: inline-block;
     font-size: 1rem;
@@ -142,12 +144,12 @@ label{
     margin-top: 0.5rem;
 }
 
-label:hover{
+.sort-radio-container label:hover{
     background: url("../img/radio.png") no-repeat 0 -24px;
     cursor: pointer;
 }
 
-input[type = "radio"]:checked + label{
+.sort-radio-container input[type = "radio"]:checked + label{
     background: url("../img/radio.png") no-repeat 0 -48px;
     color: #663399
 }
@@ -230,25 +232,15 @@ button{
 
 }
 
-.delete-book-btn:hover, .edit-book-btn:hover{
-    color: #f6efef;
-    border: #663399 2px solid;
-    background-color: #663399;
-    border-radius: 50%;
-    height: 45px;
-    width: 45px;
-    font-size: 10px;
-}
-
 .delete-book-btn:hover .material-icons-outlined{
     font-size: 20px;
-    color: #f6efef;
+    /* color: #f6efef; */
 
 }
 
 .edit-book-btn:hover .material-icons-outlined{
     font-size: 20px;
-    color: #f6efef;
+    /* color: #f6efef; */
 
 }
 
@@ -257,18 +249,42 @@ button{
     font-weight: 600;
     font-size: 12px;
     color: #663399;
+    border-color: transparent;
     align-self: center;
     border-radius: 50%;
-    transition: all 0.3s;
+    transition: all 0.2s;
+}
+
+.delete-book-btn:hover, .edit-book-btn:hover{
+    /* color: #f6efef; */
+    border: #663399 2px solid;
+    /* background-color: #663399; */
+    border-radius: 5px;
+    /* height: 45px; */
+    /* width: 45px; */
+    padding: 2px 3px;
+    font-size: 10px;
+}
+
+.edit-book-btn:hover{
+    /* color: #f6efef; */
+    border: #663399 2px solid;
+    /* background-color: #663399; */
+    border-radius: 5px;
+    /* height: 45px; */
+    /* width: 45px; */
+    padding: 2px 8px;
+    font-size: 10px;
 }
 
 .read-book-status{
     text-align: center;
     width: 100%;
     padding: 10px;
-    border: #663399 2px solid;
+    border: #b487e0 2px solid;
     font-weight: 600;
     color: #663399;
+    border-radius: 5px;
 }
 
 .input-book-detail-modal{
@@ -301,18 +317,25 @@ button{
     border:#994ff3 solid 1px;
     padding: 15px 20px 15px 20px;
     align-items: center;
+    text-transform: capitalize;
     border-radius: 5px;
     color: #663399;
+}
+
+.row .book-details{
+    font-weight: 600;
 }
 
 
 
 form{
-    background-color: royalblue;
+    background-color: #68339c;
+    color: #e2daeb;
     width: 30%;
     min-width: 250px;
     height: 70vh;
     padding: 10px;
+    padding-top: 5px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     position: relative;
@@ -322,7 +345,7 @@ form{
 
 
 .close-icon{
-    color: #fff;
+    color: #e2daeb;
     font-size: 18px;
     display: inline-block;
     position: absolute;
@@ -333,18 +356,27 @@ form{
 
 }
 
+form h3{
+    /* margin-top: 30px; */
+    margin-bottom: 20px;
+}
+
 form input[type =text]{
     border-radius: 3px;
     font-size: 14px;
+    font-weight: 600;
     outline: none;
-    border: none;
+    /* border: none; */
     margin-bottom: 10px;
     /* height: 30px; */
     width: 95%;
     padding: 10px;
+    background-color: transparent;
+    border: solid 2px #c4bccc;
+    border-radius: 5px;
     /* display: inline-block; */
     /* box-shadow:0 0 5px rgba(0, 0, 0, 0.5); */
-    color: #707070;
+    color: #e2daeb;
 }
 
 form input[type =text]:not(last-child){
@@ -352,12 +384,12 @@ form input[type =text]:not(last-child){
 
 }
 form input[type =text]:focus{
-    border: 2px rgba(0, 0, 0, 0.6) solid;
+    border: 2px #e2daeb8a solid;
 }
 
 .error-message{
     font-size: 14px;
-    color: rgb(243, 85, 45);
+    color: #fa9a9a;
     align-self: flex-start;
     font-weight: 500;
     padding-left: 8px;
@@ -368,11 +400,12 @@ form input[type =text]:focus{
 
 form input::placeholder{
     font-size: 12px;
+    color: #e2daeb;
 }
 
 .read-options-container{
     margin-top: 8px;
-    border: solid #fff 2px;
+    /* border: solid #fff 2px; */
     border-radius: 3px;
 }
 
@@ -395,6 +428,19 @@ form input::placeholder{
 
 .add-book-btn, .save-changes-btn{
     margin-top: 20px;
+    border: solid 2px #e2daeb;
+    border-radius: 5px;
+    padding: 10px 15px 10px 15px;
+    /* margin-top: 15px; */
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #e2daeb;
+    transition: all 0.5s;
+}
+
+.add-book-btn:hover, .save-changes-btn:hover{
+    background-color: #e2daeb;
+    color: #68339c;
 }
 
 .edit-book-form{
@@ -409,7 +455,45 @@ form input::placeholder{
     display: flex;
 }
 
-@media(max-width:764px){
+.app-footer{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.copy-right{
+    margin-bottom: 10px;
+    color:#4c346b;
+}
+
+.socials{
+    width: 15%;
+    justify-content: space-around;
+}
+
+a{
+    padding: 5px;
+    border-radius: 5px;
+}
+
+a:hover{
+    background-color: #663399;
+}
+
+
+.fab{
+    font-size: 22px;
+    color:#663399;
+}
+
+a:hover .fab{
+    color: #e2daeb;
+}
+
+.fab:visited{
+    color:#663399;
+}
+
+/* @media(max-width:764px){
     .first-shape{
         width: 15px;
         height: 15px;
@@ -425,7 +509,7 @@ form input::placeholder{
         font-size: 16px;
     }
 
-    label{
+    .sort-radio-container label{
 
         font-size: 14px;
         font-weight: 600;
@@ -435,10 +519,10 @@ form input::placeholder{
         font-size: 10px;
         padding: 10px 7px;
     }
-}
+} */
 
 
-@media(max-width:634px){
+@media(max-width:764px){
     .app-main{
         width: 95%;
     }
@@ -448,7 +532,7 @@ form input::placeholder{
         width: 90%;    
     }
 
-    label{
+    .sort-radio-container label{
 
         font-size: 12px;
         font-weight: 600;
@@ -460,6 +544,7 @@ form input::placeholder{
     .content{
         width: 90%;
         grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 240px;
         column-gap: 10px;
         
     }
@@ -467,16 +552,50 @@ form input::placeholder{
     .row{
         
         grid-template-columns: 1fr;
-        /* border: red solid 1px; */
-        padding: 10px 10px 11px 10px;
+        grid-template-rows: auto;
+        row-gap: 3px;
+        padding: 15px 10px 10px 10px;
         align-items: center;
         border-radius: 5px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: capitalize;
+        min-width: 195px;
+    }
+
+    .row .material-icons-outlined{
+        display: none;
+    }
+    
+    .row .book-details{
+        padding-top: 5px;
+    }
+
+    .edit-book-btn, .add-book-btn, .delete-book-btn{
+        background-color: #e2daeb;
+      
+        border-radius: 0;
+        text-align: center;
+        width: 100%;
+        padding: 10px;
+        border: #b487e0 2px solid;
+        font-weight: 600;
+        color: #663399;
+        border-radius: 5px;
+    }
+
+    .edit-book-btn:hover, .delete-book-btn:hover{
+        padding: 10px;
+        font-size: 12px;
+        background-color: #663399;
+        color: #e2daeb;
     }
 
     /*  */
 
         .app-header h1{
-            font-size: 32px;
+            font-size: 36px;
             margin-bottom: 20px;
         }
         
@@ -491,17 +610,20 @@ form input::placeholder{
         .sort-section h3{
             font-size: 14px;
         }
+
+        .socials{
+            width: 25%;
+        }
 }
 
-@media(max-width:464px){
+@media(max-width:474px){
 
     .content{
         grid-template-columns:1fr;
-        column-gap: 10px;
+        /* grid-auto-rows: 400px; */
+        row-gap: 1px;
         max-width: 280px;
-        min-width: 200px;
-        border: solid 1px green;
-        
+        min-width: 200px;   
     }
 
     .app-header{
@@ -509,7 +631,7 @@ form input::placeholder{
     }
 
     .app-header h1{
-        font-size: 18px;
+        font-size: 22px;
         margin-bottom: 10px;
         margin-top: 15px;
     }
@@ -530,15 +652,20 @@ form input::placeholder{
         font-size: 12px;
     }
 
+    .new-book-btn{
+        padding: 8px 10px 8px 10px;
+        font-size: 12px;
+    }
+
 
     form{
-        width: 80%;
+        width: 60%;
         min-width: 200px;
         padding: 7px;
         
     }
 
-    label{
+    .sort-radio-container label{
 
         font-size: 12px;
         font-weight: 500;
@@ -555,19 +682,18 @@ form input::placeholder{
         font-size: 10px;
     }
 
-    
-
-
     .row{
         
         grid-template-columns: 1fr;
         /* border: red solid 1px; */
+        font-size: 12px;;
         padding: 10px 10px 11px 10px;
         align-items: center;
         border-radius: 5px;
         min-width: 158px;
         align-self: center;
         /* justify-self: center; */
+        row-gap: 5px;
     }
 }
 
@@ -591,7 +717,7 @@ form input::placeholder{
         min-width: 100px;
     }
 
-    label{
+    .sort-radio-container label{
 
         font-size: 12px;
         font-weight: 600;

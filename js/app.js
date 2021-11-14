@@ -118,10 +118,10 @@ function displayBooks() {
     const tableRow = document.createElement("div");
     tableRow.className = "row";
     tableRow.innerHTML = `
-    <div>${book.title}</div>
-    <div>${book.author}</div>
-    <div>${book.pages}</div>
-    <div><button class="btn read-book-status " data-readstatusindex = "${index}">${readStatus}</button></div>
+    <div class="book-details">${book.title}</div>
+    <div class="book-details">${book.author}</div>
+    <div class="book-details">${book.pages}</div>
+    <div><button class="btn read-book-status" data-readstatusindex = "${index}">${readStatus}</button></div>
     <div class="flex"><button class="btn edit-book-btn flex column" data-editbookindex = "${index}"><span class="material-icons-outlined delete-icon">edit</span>edit</button></div>
     <div class="flex"><button class="btn delete-book-btn flex column" data-bookindex = "${index}"><span class="material-icons-outlined delete-icon">delete</span>delete</button></div>
     `;
@@ -129,6 +129,7 @@ function displayBooks() {
     tableBody.append(tableRow);
   });
   console.log(tableBody.firstChild);
+  readStatusColor();
 }
 
 function addBookToLibrary() {
@@ -264,7 +265,7 @@ function switchFormSubmitButton(target) {
   if (target.classList.contains("edit-book-btn")) {
     addBookForm.classList.add("hide");
     editBookForm.classList.add("active");
-  } else if (target.classList.contains("add-book-btn")) {
+  } else if (target.classList.contains("new-book-btn")) {
     addBookForm.classList.remove("hide");
     editBookForm.classList.remove("active");
   }
@@ -319,8 +320,6 @@ function closeAddBookModal() {
     const closeEditBookModalIcon = document.querySelector(
       ".edit-book-form .close-icon"
     );
-    const saveChangesBtn = document.querySelector(".save-changes-btn");
-    const addBookBtn = document.querySelector(".add-book-btn");
     if (
       target === addBookModal ||
       target === closeAddBookModalIcon ||
@@ -402,7 +401,7 @@ function validateFormFields(
       if (message.nextElementSibling.value === "") {
         message.textContent = `${message.dataset.fielderrormessage} `;
         message.style.display = "block";
-        message.nextElementSibling.style.borderColor = "red";
+        message.nextElementSibling.style.borderColor = "#fa9a9a";
         message.nextElementSibling.style.borderStyle = "solid";
       }
     });
@@ -421,3 +420,16 @@ function validateFormFields(
     removeModal();
   }
 }
+
+function readStatusColor() {
+  const readStatusBtns = document.querySelectorAll(".read-book-status");
+  readStatusBtns.forEach((readStatusBtn) => {
+    if (readStatusBtn.textContent === "read") {
+      readStatusBtn.style.backgroundColor = "#9beb9b";
+    } else {
+      readStatusBtn.style.backgroundColor = "#fa9a9a";
+    }
+  });
+}
+
+readStatusColor();
