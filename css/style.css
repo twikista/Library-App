@@ -13,6 +13,10 @@ body{
 }
 
 .app-container{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
 }
 
 .app-main{
@@ -21,6 +25,7 @@ body{
     margin: 0 auto;
     padding-bottom: 40px;
     font-family: 'Poppins', sans-serif;
+    /* flex: 1; */
     
 }
 
@@ -399,6 +404,7 @@ form input::placeholder{
 .app-footer{
     padding-top: 15px;
     padding-bottom: 15px;
+    margin-top: auto;
 }
 
 .copy-right{

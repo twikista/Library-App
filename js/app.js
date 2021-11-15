@@ -26,10 +26,16 @@ Book.prototype.bookDetails = function (bookTitle, bookAuthor, bookPages) {
   bookPages.value = this.pages;
 };
 
-Book.prototype.modifyBookDetails = function (bookTitle, bookAuthor, bookPages) {
+Book.prototype.modifyBookDetails = function (
+  bookTitle,
+  bookAuthor,
+  bookPages,
+  readstat
+) {
   this.title = bookTitle.value;
   this.author = bookAuthor.value;
   this.pages = bookPages.value;
+  this.read = readstat;
 };
 
 //get all books from local storage
@@ -341,6 +347,7 @@ function editBook() {
       return selectedValue;
     }
     const readStatus = getReadStatus();
+    console.log(getReadStatus());
     function setBookDetails(instanceofBook) {
       instanceofBook.modifyBookDetails(
         titleField,
