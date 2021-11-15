@@ -56,6 +56,7 @@ body{
 
 .custom-search-filter{
     width: 80%;
+    font-family: 'Roboto', sans-serif;
 }
 
 .search{
@@ -111,7 +112,7 @@ body{
     display: inline-block;
     font-size: 1rem;
     font-weight: 600;
-    font-family: "arial", sans-serif;
+    /* font-family: "arial", sans-serif; */
     padding-left: 18px;
     background: url("../img/radio.png") no-repeat 0 0;
     margin-bottom: 0.3rem;
@@ -413,6 +414,7 @@ form input::placeholder{
     padding-top: 15px;
     padding-bottom: 15px;
     margin-top: auto;
+    font-family: 'Roboto', sans-serif;
 }
 
 .copy-right{
