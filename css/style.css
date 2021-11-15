@@ -35,10 +35,14 @@ body{
 
 .app-header h1{
     font-size: 56px;
+    color: #4c346b;
+}
+
+.logo-container{
     margin-bottom: 30px;
     margin-top: 40px;
     padding-top: 20px;
-    color: #4c346b;
+
 }
 
 
@@ -512,9 +516,18 @@ a:hover .fab{
         color: #e2daeb;
     }
 
+    .logo-container{
+        margin-bottom: 20px;
+    
+    }
+
     .app-header h1{
-            font-size: 36px;
-            margin-bottom: 20px;
+        font-size: 36px;   
+    }
+
+    .first-shape{
+        width: 16px;
+        height: 16px;
     }
         
 
@@ -547,11 +560,24 @@ a:hover .fab{
         min-width: 200px;
     }
 
-    .app-header h1{
-        font-size: 22px;
+    .logo-container{
         margin-bottom: 10px;
         margin-top: 15px;
+
     }
+
+    .app-header h1{
+        font-size: 24px;
+        
+    }
+
+    .first-shape{
+        width: 11px;
+        height: 11px;
+
+    }
+
+
     .search-box{
         width: 80%;
         min-width: 120px;
@@ -653,8 +679,18 @@ a:hover .fab{
         align-items: center;
     }
 
+    .logo-container{
+        margin-top: 8px;
+        
+    }
+
     .app-header h1{
-        font-size: 15px;
+        font-size: 16px;
+    }
+
+    .first-shape{
+        width: 9px;
+        height: 9px;
     }
 
     .sort-section h3{
@@ -667,7 +703,6 @@ a:hover .fab{
     }
 
     .sort-radio-container label{
-
         font-size: 12px;
         font-weight: 600;
         margin-bottom: -5px;
