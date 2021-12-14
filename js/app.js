@@ -80,7 +80,6 @@ function moveBookToStorage() {
 function displayBooks() {
   //check for and remove existing book from page
   const allLibraryBooks = document.querySelector(".content");
-  console.log(allLibraryBooks.firstChild);
   while (allLibraryBooks.firstChild) {
     allLibraryBooks.removeChild(allLibraryBooks.firstChild);
   }
@@ -99,7 +98,6 @@ function displayBooks() {
 
     allLibraryBooks.append(libraryBook);
   });
-  console.log(allLibraryBooks.firstChild);
   readStatusColor();
 }
 
@@ -153,21 +151,20 @@ function resetInputFields(titleField, authorField, pagesField) {
 
 addBookToLibrary();
 
-function toggleBookReadStatus(target, instanceofBook) {
-  if (
-    target.tagName === "BUTTON" &&
-    target.classList.contains("read-book-status")
-  ) {
-    instanceofBook.bookReadStatus(target);
-  }
+function toggleBookReadStatus() {
+  const allLibraryBooks = document.querySelector(".content");
+  allLibraryBooks.addEventListener("click", (e) => {
+    const target = e.target;
+    if (
+      target.tagName === "BUTTON" &&
+      target.classList.contains("read-book-status")
+    ) {
+      myLibrary[target.dataset.readstatusindex].bookReadStatus(target);
+    }
+    moveBookToStorage();
+  });
 }
-
-const allLibraryBooks = document.querySelector(".content");
-allLibraryBooks.addEventListener("click", (e) => {
-  const target = e.target;
-  toggleBookReadStatus(target, myLibrary[target.dataset.readstatusindex]);
-  moveBookToStorage();
-});
+toggleBookReadStatus();
 
 function deleteBook() {
   const allLibraryBooks = document.querySelector(".content");
