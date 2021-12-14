@@ -1,5 +1,6 @@
 let objindex = null;
 
+/*
 //Book constructor
 function Book(title, author, pages, read) {
   this.title = title;
@@ -7,21 +8,13 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
 }
+*/
 
 //class definition
+//class definition
 class Book {
-  constructor(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.bookReadStatus = this.bookReadStatusFnc;
-    this.bookDetails = this.bookDetailsFnc;
-    this.modifyBookDetails = this.modifyBookDetailsFnc;
-  }
-
-  //method that toggles a book’s read status on Book prototype instance.
-  bookReadStatusFnc(target) {
+  //book class methods
+  static bookReadStatusFnc(target) {
     if (this.read === "true") {
       this.read = "false";
     } else if (this.read === "false") {
@@ -31,51 +24,29 @@ class Book {
     target.textContent = `${readStatus}`;
   }
 
-  bookDetailsFnc(bookTitle, bookAuthor, bookPages) {
+  static bookDetailsFnc(bookTitle, bookAuthor, bookPages) {
     bookTitle.value = this.title;
     bookAuthor.value = this.author;
     bookPages.value = this.pages;
   }
 
-  modifyBookDetails(bookTitle, bookAuthor, bookPages, readstat) {
+  static modifyBookDetailsFnc(bookTitle, bookAuthor, bookPages, readstat) {
     this.title = bookTitle.value;
     this.author = bookAuthor.value;
     this.pages = bookPages.value;
     this.read = readstat;
   }
-}
-
-/*
-//method/function that toggles a book’s read status on Book prototype instance.
-Book.prototype.bookReadStatus = function (target) {
-  if (this.read === "true") {
-    this.read = "false";
-  } else if (this.read === "false") {
-    this.read = "true";
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    //reference book class methods
+    this.bookReadStatus = Book.bookReadStatusFnc;
+    this.bookDetails = Book.bookDetailsFnc;
+    this.modifyBookDetails = Book.modifyBookDetailsFnc;
   }
-
-  const readStatus = this.read === "true" ? "read" : "Not read";
-  target.textContent = `${readStatus}`;
-};
-
-Book.prototype.bookDetails = function (bookTitle, bookAuthor, bookPages) {
-  bookTitle.value = this.title;
-  bookAuthor.value = this.author;
-  bookPages.value = this.pages;
-};
-
-Book.prototype.modifyBookDetails = function (
-  bookTitle,
-  bookAuthor,
-  bookPages,
-  readstat
-) {
-  this.title = bookTitle.value;
-  this.author = bookAuthor.value;
-  this.pages = bookPages.value;
-  this.read = readstat;
-};
-*/
+}
 
 //get all books from local storage
 function getBookFromstorage() {
