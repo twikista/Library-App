@@ -55,33 +55,11 @@ function getBookFromstorage() {
 //store books in myLibrary
 const myLibrary = getBookFromstorage();
 
-//add methods to objects retrieved from localStorage
+//add back methods to objects retrieved from localStorage
 myLibrary.forEach((book) => {
-  book.bookReadStatus = function (target) {
-    if (this.read === "true") {
-      this.read = "false";
-    } else if (this.read === "false") {
-      this.read = "true";
-    }
-    const readStatus = this.read === "true" ? "read" : "Not read";
-    target.textContent = `${readStatus}`;
-  };
-  book.bookDetails = function (bookTitle, bookAuthor, bookPages) {
-    bookTitle.value = this.title;
-    bookAuthor.value = this.author;
-    bookPages.value = this.pages;
-  };
-  book.modifyBookDetails = function (
-    bookTitle,
-    bookAuthor,
-    bookPages,
-    readStatus
-  ) {
-    this.title = bookTitle.value;
-    this.author = bookAuthor.value;
-    this.pages = bookPages.value;
-    this.read = readStatus;
-  };
+  book.bookReadStatus = Book.bookReadStatusFnc;
+  book.bookDetails = Book.bookDetailsFnc;
+  book.modifyBookDetails = Book.modifyBookDetailsFnc;
 });
 
 //function that instantiate constructor and add book to list
